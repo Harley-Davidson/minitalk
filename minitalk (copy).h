@@ -6,7 +6,6 @@
 # include <stdlib.h>
 # include "./libft/libft.h"
 # include "./libft/ft_printf.h"
-# include <wchar.h>
 
 typedef struct s_minitalk
 {
