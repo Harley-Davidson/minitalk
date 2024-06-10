@@ -9,13 +9,18 @@ RESET=\033[0m
 
 CLIENT = client
 SERVER = server
+CLIENT_BONUS = client_bonus
+SERVER_BONUS = server_bonus
 CC = cc
 CFLAGS = -Werror -Wextra -Wall
 LIBFT_PATH = ./libft
 RM = rm -f
 NAME = minitalk
+NAME_BONUS = minitalk_bonus
 
 all: libft  ${NAME}
+
+bonus: libft  ${NAME_BONUS}
 
 libft:
 	if [ ! -d "$(LIBFT_PATH)" ]; then \
@@ -36,8 +41,13 @@ minitalk:
 	if [ "$(SERVER)" ]; then \
 		echo "${CYAN}SERVER is ready\n${RESET}"; fi
 
-run:	all
-	./server;
+minitalk_bonus:
+	${CC} ${CFLAGS} ${CLIENT_BONUS}.c -o ${CLIENT_BONUS} -L${LIBFT_PATH} -lft
+	if [ "$(CLIENT_BONUS)" ]; then \
+		echo "${YELLOW}CLIENT is ready${RESET}"; fi
+	${CC} ${CFLAGS} ${SERVER_BONUS}.c -o ${SERVER_BONUS} -L${LIBFT_PATH} -lft
+	if [ "$(SERVER_BONUS)" ]; then \
+		echo "${CYAN}SERVER is ready\n${RESET}"; fi
 
 clean:
 	${MAKE} -C ${LIBFT_PATH} clean > /dev/null 2>&1
@@ -46,11 +56,13 @@ fclean: clean
 	${MAKE} -C ${LIBFT_PATH} fclean > /dev/null 2>&1
 	${RM} ${CLIENT}
 	${RM} ${SERVER}
+	${RM} ${CLIENT_BONUS}
+	${RM} ${SERVER_BONUS}
 	${RM} -rf ${LIBFT_PATH}
 
 re:			fclean all
 
-.PHONY:		all clean fclean re libft
+.PHONY:		all bonus clean fclean re libft
 
 
 

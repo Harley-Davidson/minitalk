@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvoloshy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/10 13:26:00 by mvoloshy          #+#    #+#             */
+/*   Updated: 2024/06/10 13:26:02 by mvoloshy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
-/*
-	SIGUSR2 = 1
-	SIGUSR1 = 0
-*/
 void	send_char(pid_t server_pid, char c)
 {
 	int	i;
@@ -54,6 +62,5 @@ int	main(int argc, char **argv)
 	send_message(server_pid, argv[2]);
 	send_message(server_pid, client_pid);
 	free(client_pid);
-
 	return (0);
 }

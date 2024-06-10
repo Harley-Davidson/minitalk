@@ -12,7 +12,6 @@
 
 #include "minitalk.h"
 
-// line25: kill(g_mt->client_pid, SIGUSR2);
 void	fetch_pid(t_minitalk *g_mt)
 {
 	int	i;
@@ -23,6 +22,7 @@ void	fetch_pid(t_minitalk *g_mt)
 		g_mt->client_pid = 10 * g_mt->client_pid + (g_mt->pid_ar[i] - '0');
 		g_mt->pid_ar[i] = '\0';
 	}
+	kill(g_mt->client_pid, SIGUSR2);
 	g_mt->is_pid = 0;
 	g_mt->pid_size = 0;
 	g_mt->client_pid = 0;
